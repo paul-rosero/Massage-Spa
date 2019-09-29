@@ -5,4 +5,11 @@ class MassageSpa < ActiveRecord::Base
     has_many :massage_therapist
     has_many :clients
 
+    def slug
+        username.downcase.gsub(" ","-")
+      end
+    
+      def self.find_by_slug(slug)
+        MassageSpa.all.find{|user| user.slug == slug}
+      end
 end
