@@ -16,8 +16,8 @@ class SessionsController < ApplicationController
   end
 
   # POST: /sessions
-  post "/sessions" do
-    redirect "/sessions"
+  post "/login" do
+    redirect "/massage_spas/index.html"
   end
 
   
