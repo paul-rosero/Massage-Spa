@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20190929205844) do
 
   create_table "massage_spas", force: :cascade do |t|
     t.string   "email"
-    t.string   "username"
     t.string   "password_digest"
     t.string   "name"
     t.datetime "created_at",      null: false
