@@ -9,6 +9,10 @@ class SessionsController < ApplicationController
     erb :"/sessions/new.html"
   end
 
+  post "/signup" do
+    redirect "/login"
+  end
+
   # GET: /sessions/new
   get "/logout" do
     session.clear
@@ -17,7 +21,7 @@ class SessionsController < ApplicationController
 
   # POST: /sessions
   post "/login" do
-    redirect "/massage_spas/index.html"
+    redirect '/massage_spas/index.html'
   end
 
   
