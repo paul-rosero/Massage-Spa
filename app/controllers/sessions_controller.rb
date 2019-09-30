@@ -6,10 +6,25 @@ class SessionsController < ApplicationController
   end
 
   get "/signup" do
-    erb :"/sessions/new.html"
+    if logged_in?
+      
+      redirect "/massage_spas/new.html"
+    else
+      erb :"/sessions/new.html"
+     
+    end
   end
 
   post "/signup" do
+    if params[:name] == "" || params[:email]== "" || params[:password] == ""
+     
+      redirect '/signup'
+    else
+      @massage_spa = MassageSpa.create(name: params[:name], email: params[:email], password: params[:password])
+      session[:massage_spa_id] = @massage_spa.id
+
+      redirect '/massage_spas/index.html'
+    end
     redirect "/login"
   end
 
