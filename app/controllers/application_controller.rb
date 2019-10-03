@@ -16,7 +16,7 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def current_user
-      @current_user ||= MassageSpa.find_by(username: params[:username]) if session[:username]
+      @current_user ||= MassageSpa.find_by(id: session[:user_id])
     end
 
     def logged_in?

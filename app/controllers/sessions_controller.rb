@@ -5,6 +5,18 @@ class SessionsController < ApplicationController
     erb :"/sessions/login.html"
   end
 
+  # POST: /sessions
+  post "/login" do
+    @massage_spa = MassageSpa.find_by(email: params[:email])
+    if @massage_spa && @massage.authenticate(params[:password])
+      session[:massage_spa_id] = @massage_spa.id
+    
+      redirect "/massage_spas/#{@massage_spa.id}"
+    else
+      redirect
+    end
+  end
+
   get "/signup" do
     if logged_in?
       
@@ -34,10 +46,7 @@ class SessionsController < ApplicationController
     erb :"/sessions/logout.html"
   end
 
-  # POST: /sessions
-  post "/login" do
-    redirect '/massage_spas/index.html'
-  end
+  
 
   
 end

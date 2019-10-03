@@ -17,7 +17,7 @@ class MassageSpasController < ApplicationController
 
   # GET: /massage_spas/5
   get "/massage_spas/:id" do
-    erb :"/massage_spas/show.html"
+    erb :"/massage_spas/index.html"
   end
 
   # GET: /massage_spas/5/edit
