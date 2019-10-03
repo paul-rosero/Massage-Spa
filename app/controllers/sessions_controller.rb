@@ -7,8 +7,8 @@ class SessionsController < ApplicationController
 
   # POST: /sessions
   post "/login" do
-    @massage_spa = MassageSpa.find_by(email: params[:email])
-    if @massage_spa && @massage.authenticate(params[:password])
+    @massage_spa = MassageSpa.find_by(id: params[:id])
+    if @massage.authenticate(params[:password])
       session[:massage_spa_id] = @massage_spa.id
     
       redirect "/massage_spas/#{@massage_spa.id}"
