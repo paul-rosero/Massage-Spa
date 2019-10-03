@@ -8,6 +8,5 @@ use Rack::MethodOverride
 
 run ApplicationController
 use SessionsController
-use MassageTherapistsController
 use ClientsController
 use MassageSpasController
