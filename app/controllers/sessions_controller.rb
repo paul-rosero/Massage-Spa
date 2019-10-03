@@ -28,16 +28,14 @@ class SessionsController < ApplicationController
   end
 
   post "/signup" do
-    if params[:name] == "" || params[:email]== "" || params[:password] == ""
-     
-      redirect '/signup'
-    else
-      @massage_spa = MassageSpa.create(name: params[:name], email: params[:email], password: params[:password])
+    @massage_spa = MassageSpa.new(name: params[:name], email: params[:email], password: params[:password])
+    if @massage_spa.save
       session[:massage_spa_id] = @massage_spa.id
 
       redirect '/massage_spas/index.html'
+    else
+       redirect "/signup"
     end
-    redirect "/login"
   end
 
   # GET: /sessions/new
