@@ -1,13 +1,29 @@
 class MassageSpasController < ApplicationController
 
+  get "/signup" do
+    if logged_in?
+      
+      redirect "/massage_spas/new.html"
+    else
+      erb :"/sessions/new.html"
+     
+    end
+  end
+
+  post "/signup" do
+    @massage_spa = MassageSpa.new(name: params[:name], email: params[:email], password: params[:password])
+    if @massage_spa.save
+      session[:massage_spa_id] = @massage_spa.id
+
+      redirect '/massage_spas/index.html'
+    else
+       redirect "/signup"
+    end
+  end
+
   # GET: /massage_spas
   get "/massage_spas" do
     erb :"/massage_spas/index.html"
-  end
-
-  # GET: /massage_spas/new
-  get "/massage_spas/new" do
-    erb :"/massage_spas/new.html"
   end
 
   # POST: /massage_spas
