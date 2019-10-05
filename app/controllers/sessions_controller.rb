@@ -2,10 +2,10 @@ class SessionsController < ApplicationController
 
   # GET: /sessions
   get "/login" do
-    if !logged_in?
-      erb :"/sessions/login.html"
-    else
+    if logged_in?
       redirect "/massage_spas/#{@massage_spa.id}"
+    else
+      erb :"/sessions/login.html"
     end
   end
 
