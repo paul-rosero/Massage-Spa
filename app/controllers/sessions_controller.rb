@@ -2,7 +2,11 @@ class SessionsController < ApplicationController
 
   # GET: /sessions
   get "/login" do
-    erb :"/sessions/login.html"
+    if !logged_in?
+      erb :"/sessions/login.html"
+    else
+      redirect "/massage_spas/#{@massage_spa.id}"
+    end
   end
 
   # POST: /sessions
@@ -11,7 +15,7 @@ class SessionsController < ApplicationController
     if @massage_spa && @massage_spa.authenticate(params[:password])
       session[:massage_spa_id] = @massage_spa.id
     
-      redirect "/massage_spas"
+      redirect "/massage_spas/#{@massage_spa.id}}"
     else
       redirect '/login'
     end
