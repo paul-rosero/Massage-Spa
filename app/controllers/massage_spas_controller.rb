@@ -3,7 +3,7 @@ class MassageSpasController < ApplicationController
   get "/signup" do
     if logged_in?
       
-      redirect "/massage_spas/new.html"
+      redirect "/massage_spas/#{@massage_spa.id}"
     else
       erb :"/sessions/new.html"
      
@@ -15,24 +15,14 @@ class MassageSpasController < ApplicationController
     if @massage_spa.save
       session[:massage_spa_id] = @massage_spa.id
 
-      redirect '/massage_spas/index.html'
+      redirect "/massage_spas/#{@massage_spa.id}"
     else
        redirect "/signup"
     end
   end
 
-  # GET: /massage_spas
-  get "/massage_spas" do
-    erb :"/massage_spas/index.html"
-  end
-
-  # POST: /massage_spas
-  post "/massage_spas" do
-    redirect "/massage_spas"
-  end
-
-  # GET: /massage_spas/5
   get "/massage_spas/:id" do
+    @massage_spa = MassageSpa.find_by(id: params[:id])
     erb :"/massage_spas/index.html"
   end
 
