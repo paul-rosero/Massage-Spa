@@ -1,1 +1,17 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>Create a new client.</h1><br>
+<form method="post" action="/clients">
+    <h3>Please enter client's name(first & last) here:</h3>
+        <h3><label for="name">Name:</label>
+        <input type="text" name="name" id="name"></h3>
+        <br>
+     <h3>Please enter the client's address here:</h3>
+        <h3><label for="address">Address:</label>
+        <input type="textarea" name="address" id="address"></h3>
+        <br>
+    <h3>Please enter your client's medical history here:</h3>
+        <h3><label for="medical_history">Medical History:</label>
+        <input type="textarea" name="medical_history" id="medical_history"></h3>
+        <br>
+    <input type="submit">    
+</form>
+
