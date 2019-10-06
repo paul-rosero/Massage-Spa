@@ -5,13 +5,17 @@ class ClientsController < ApplicationController
     erb :"/clients/index.html"
   end
 
-  # GET: /clients/new
+  
   get "/clients/new" do
     erb :"/clients/new.html"
   end
 
-  # POST: /clients
+  
   post "/clients" do
+    if !logged_in?
+      redirect '/'
+    end
+    
     redirect "/clients"
   end
 
