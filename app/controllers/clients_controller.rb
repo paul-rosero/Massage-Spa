@@ -7,21 +7,33 @@ class ClientsController < ApplicationController
 
   
   get "/clients/new" do
-    erb :"/clients/new.html"
+    if logged_in?
+      erb :"/clients/new.html"
+    else
+      redirect '/'
   end
 
   
   post "/clients" do
-    if !logged_in?
+    if logged_in?
+      @client = Client.new(params, massage_spa_id: current_user.id)
+      if @client.save
+        redirect "/clients/#{@client.id}"
+      else
+        redirect '/clients/new.html'
+      end
+    else
       redirect '/'
     end
-    
-    redirect "/clients"
   end
 
-  # GET: /clients/5
   get "/clients/:id" do
-    erb :"/clients/show.html"
+    if logged_in?
+      @client = Client.find_by(massage_spa_id: params[:id])
+      erb :"/clients/show.html"
+    else
+      redirect '/'
+    end
   end
 
   # GET: /clients/5/edit
