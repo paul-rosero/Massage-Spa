@@ -1,5 +1,6 @@
 class Client < ActiveRecord::Base
     belongs_to :massage_spa
+    validates :name, :address, :medical_history, presence: true
 
     def slug
         name.downcase.gsub(" ","-")
