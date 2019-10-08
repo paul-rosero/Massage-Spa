@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
 
-  # GET: /clients
   get "/clients" do
+    @clients = Client.all
     erb :"/clients/index.html"
   end
 
