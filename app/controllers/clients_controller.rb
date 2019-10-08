@@ -11,6 +11,7 @@ class ClientsController < ApplicationController
       erb :"/clients/new.html"
     else
       redirect '/'
+    end
   end
 
   
