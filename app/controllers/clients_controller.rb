@@ -36,7 +36,6 @@ class ClientsController < ApplicationController
 
   get "/clients/:id" do
     if logged_in?
-     # binding.pry
       @client = Client.find_by(id: params[:id])
       erb :"/clients/show.html"
     else
