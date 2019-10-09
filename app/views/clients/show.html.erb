@@ -1,1 +1,8 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h1><%= @client.name %></h1>
+<br>
+<h3>Address: <%= @client.address %></h3>
+<br>
+ <h3>Medical History: <%= @client.medical_history%></h3>
+
+ <p>To Edit your client <a href="/cleints/<%= @client.id%>/edit">Here</a></p><br>
+ <p>To Delete your client </p><br>

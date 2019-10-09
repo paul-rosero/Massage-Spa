@@ -1,8 +1,12 @@
 class ClientsController < ApplicationController
 
   get "/clients" do
-    @clients = Client.all
-    erb :"/clients/index.html"
+    if logged_in?
+      @clients = Client.all
+      erb :"/clients/index.html"
+    else
+      redirect '/'
+    end
   end
 
   
@@ -17,11 +21,14 @@ class ClientsController < ApplicationController
   
   post "/clients" do
     if logged_in?
-      @client = Client.new(params, massage_spa_id: current_user.id)
+      @client = Client.new(params, massage_spa_id: params[current_user.id])
+      #binding.pry
       if @client.save
+        binding.pry
         redirect "/clients/#{@client.id}"
       else
-        redirect '/clients/new.html'
+        #binding.pry
+        redirect '/clients/new'
       end
     else
       redirect '/'
@@ -30,7 +37,8 @@ class ClientsController < ApplicationController
 
   get "/clients/:id" do
     if logged_in?
-      @client = Client.find_by(massage_spa_id: params[:id])
+      #binding.pry
+      @client = Client.find_by(id: params[:id])
       erb :"/clients/show.html"
     else
       redirect '/'
