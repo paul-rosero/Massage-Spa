@@ -3,6 +3,8 @@
 <h3>Address: <%= @client.address %></h3>
 <br>
  <h3>Medical History: <%= @client.medical_history%></h3>
-
- <p>To Edit your client <a href="/cleints/<%= @client.id%>/edit">Here</a></p><br>
- <p>To Delete your client </p><br>
+ <% binding.pry %>
+<% if current_user == @client.massage_spa%>
+    <p>To Edit your client, click <a href="/cleints/<%= @client.id%>/edit">Here</a></p><br>
+    <p>To Delete your client </p><br>
+<% end %>
