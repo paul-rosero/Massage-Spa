@@ -1,5 +1,8 @@
 <h1>This is all the clients in our database:</h1>
-<% @clients.each do |client| %>
-   <a href='/clients/:id'><%= client.name%></a><br>
+<ol>
+    <% @clients.each do |client| %>
     
-<% end %>
+        <li><a href="/clients/<%= client.id %>"><%= client.name%></a></li>
+    
+    <% end %>
+</ol>
