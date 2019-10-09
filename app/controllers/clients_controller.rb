@@ -22,12 +22,11 @@ class ClientsController < ApplicationController
   post "/clients" do
     if logged_in?
       @client = Client.new(params, massage_spa_id: params[current_user.id])
-      #binding.pry
       if @client.save
-        binding.pry
+        
         redirect "/clients/#{@client.id}"
       else
-        #binding.pry
+      
         redirect '/clients/new'
       end
     else
@@ -37,7 +36,7 @@ class ClientsController < ApplicationController
 
   get "/clients/:id" do
     if logged_in?
-      #binding.pry
+     # binding.pry
       @client = Client.find_by(id: params[:id])
       erb :"/clients/show.html"
     else
