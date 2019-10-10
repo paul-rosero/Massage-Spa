@@ -30,15 +30,27 @@ class MassageSpasController < ApplicationController
     end
   end
 
-  # GET: /massage_spas/5/edit
-  #get "/massage_spas/:id/edit" do
-    #erb :"/massage_spas/edit.html"
-  #end
+  
+  get "/massage_spas/:id/edit" do
+    @massage_spa = MassageSpa.find_by(id: params[:id])
+    if @massage_spa == current_user 
+        erb :"/massage_spas/edit.html"
+    else
+      redirect '/'
+    end
+  end
 
-  # PATCH: /massage_spas/5
-  #patch "/massage_spas/:id" do
-   # redirect "/massage_spas/:id"
-  #end
+
+  patch "/massage_spas/:id" do
+    @massage_spa = MassageSpa.find_by(id: params[:id])
+    if @massage_spa == current_user
+      @massage_spa.update(name: params[:name], email: params[:email])
+
+      redirect "/massage_spas/:id"
+    else
+      redirect "/"
+    end
+  end
 
   # DELETE: /massage_spas/5/delete
   #delete "/massage_spas/:id/delete" do
