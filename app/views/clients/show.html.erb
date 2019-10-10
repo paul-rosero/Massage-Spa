@@ -1,15 +1,23 @@
 <h1><%= @client.name %></h1>
-<br>
-<h3>Address: <%= @client.address %></h3>
-<br>
- <h3>Medical History: <%= @client.medical_history%></h3>
- <br>
- <br>
-<% #if current_user == @client.massage_spa%>
-    <h3>To Edit your client, click <a href="/clients/<%= @client.id%>/edit">Here</a></h3>
     <br>
+<h3>Address: <%= @client.address %></h3>
+    <br>
+<h3>Medical History: <%= @client.medical_history%></h3>
+    <br>
+    <br>
+    <br>
+<% if current_user == @client.massage_spa%>
+    <a href="/clients/<%= @client.id%>/edit">Edit Client</a>
+        <br>
+        <br>
     <form action="/clients/<%= @client.id%>" method="post">
         <input type="hidden" name="_method" value="DELETE">
         <input type="submit" value="Delete Client">
     </form>
-<% #end %>
+<% end %>
+    <br>
+    <br>
+    <br>
+    <br>
+<h6>Created at: <%= @client.created_at%></h6>
+<h6>Updated at: <%= @client.updated_at%></h6>
