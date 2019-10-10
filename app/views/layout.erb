@@ -14,6 +14,14 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+    <div class="nav">
+      <% if logged_in? %>
+        <a href="/logout">Log Out</a>
+        <a href="/massage_spas/<%= current_user.id %>">Homepage</a>
+        <a href="/clients">All Clients</a>
+        <a href="/clients/new">Create New Client</a>
+      <% end %>
+    </div>
     <div class="wrapper">
 
         <%= yield %>
