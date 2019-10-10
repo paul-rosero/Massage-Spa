@@ -74,7 +74,13 @@ class ClientsController < ApplicationController
   end
 
   # DELETE: /clients/5/delete
-  delete "/clients/:id/delete" do
-    redirect "/clients"
+  delete "/clients/:id" do
+    @client = Client.find_by(id: params[:id])
+    #if @client.massage_spa == current_user
+      @client.destroy
+      redirect "/clients"
+    #else
+      #redirect "/massage_spas/#{current_user.id}"
+    #end
   end
 end

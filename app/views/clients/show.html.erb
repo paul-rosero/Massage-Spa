@@ -6,6 +6,10 @@
  <br>
  <br>
 <% #if current_user == @client.massage_spa%>
-    <p>To Edit your client, click <a href="/clients/<%= @client.id%>/edit">Here</a></p>
-    <p>To Delete your client </p><br>
+    <h3>To Edit your client, click <a href="/clients/<%= @client.id%>/edit">Here</a></h3>
+    <br>
+    <form action="/clients/<%= @client.id%>" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete Client">
+    </form>
 <% #end %>
