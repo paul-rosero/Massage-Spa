@@ -1,1 +1,17 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit an existing client.</h1><br>
+<form method="post" action="/clients/<%= @client.id %>">
+    <input type="hidden" name="_method" value="patch">
+    
+        <h3><label for="name">Name:</label>
+        <input type="text" name="name" id="name" value="<%= @client.name %>"></h3>
+        <br>
+     
+        <h3><label for="address">Address:</label>
+        <input type="textarea" name="address" id="address" value="<%= @client.address %>"></h3>
+        <br>
+    
+        <h3><label for="medical_history">Medical History:</label>
+        <input type="textarea" name="medical_history" id="medical_history" value="<% @client.medical_history %>"></h3>
+        <br>
+    <input type="submit">    
+</form>

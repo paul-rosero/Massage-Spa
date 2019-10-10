@@ -43,14 +43,21 @@ class ClientsController < ApplicationController
     end
   end
 
-  # GET: /clients/5/edit
+  
   get "/clients/:id/edit" do
-    erb :"/clients/edit.html"
+    if logged_in?
+      @client = Client.find_by(id: params[:id])
+      erb :"/clients/edit.html"
+    else
+      redirect '/'
+    end
   end
 
-  # PATCH: /clients/5
+  
   patch "/clients/:id" do
-    redirect "/clients/:id"
+    @client = Client.find_by(id: params[:id])
+    @client.update(name: params[:name], address: params[:address], medical_history: params[:medical_history])
+    redirect "/clients/#{@client.id}"
   end
 
   # DELETE: /clients/5/delete
