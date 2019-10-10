@@ -60,26 +60,22 @@ class ClientsController < ApplicationController
   
   patch "/clients/:id" do
     @client = Client.find_by(id: params[:id])
-    if logged_in?
-      #if @client.massage_spa == current_user
+    if @client.massage_spa == current_user
         @client.update(name: params[:name], address: params[:address], medical_history: params[:medical_history])
         redirect "/clients/#{@client.id}"
-      #else
-        #redirect "/massage_spas/#{current_user.id}"
-      #end
-    else
+      else
       redirect '/'
     end
   end
 
-  # DELETE: /clients/5/delete
+
   delete "/clients/:id" do
     @client = Client.find_by(id: params[:id])
-    #if @client.massage_spa == current_user
+    if @client.massage_spa == current_user
       @client.destroy
       redirect "/clients"
-    #else
-      #redirect "/massage_spas/#{current_user.id}"
-    #end
+    else
+      redirect "/massage_spas/#{current_user.id}"
+    end
   end
 end
