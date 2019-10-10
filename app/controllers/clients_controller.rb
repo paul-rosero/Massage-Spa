@@ -21,7 +21,7 @@ class ClientsController < ApplicationController
   
   post "/clients" do
     if logged_in?
-      @client = Client.new(params, massage_spa_id: params[current_user.id])
+      @client = Client.new(name: params[:name], address: params[:address], medical_history: params[:medical_history], massage_spa_id: current_user.id)
       if @client.save
         
         redirect "/clients/#{@client.id}"
