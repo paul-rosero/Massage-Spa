@@ -20,7 +20,8 @@ Specs:
 - [x] Include user input validations
         cant create blank inputs for massage_spa or client. 
 - [ ] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+        have a readme.md
 
 Confirm
 - [x] You have a large number of small Git commits
