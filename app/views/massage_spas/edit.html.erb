@@ -1,1 +1,14 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit your Information.</h1><br>
+<form method="post" action="/massage_spas/<%= @massage_spa.id %>">
+    <input type="hidden" name="_method" value="patch">
+    
+    <h3><label for="name">Name:</label>
+    <input type="text" name="name" id="name" value="<%= @massage_spa.name %>"></h3>
+        <br>
+     
+    <h3><label for="email">Email:</label>
+    <input type="text" name="email" id="email" value="<%= @massage_spa.email %>"></h3>
+        <br>
+        <br>    
+    <input type="submit">    
+</form>
