@@ -25,7 +25,7 @@ class MassageSpasController < ApplicationController
     @massage_spa = MassageSpa.find_by(id: params[:id])
     if @massage_spa == current_user 
       
-      erb :"/massage_spas/index.html"
+      erb :"/massage_spas/show.html"
     else
 
       redirect '/signup'
@@ -48,7 +48,7 @@ class MassageSpasController < ApplicationController
   
     if @massage_spa == current_user
         #binding.pry
-      @massage_spa.update(name: params[:name], email: params[:email])
+      @massage_spa.update(name: params[:name], email: params[:email], password: params[:password])
 
       redirect "/massage_spas/#{@massage_spa.id}"
     else
