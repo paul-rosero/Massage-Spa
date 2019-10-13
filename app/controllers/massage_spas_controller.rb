@@ -17,6 +17,8 @@ class MassageSpasController < ApplicationController
 
       redirect "/massage_spas/#{@massage_spa.id}"
     else
+      flash[:error] = "Signup Failed. Please sign up with a name, valid email and password."
+     
        redirect "/signup"
     end
   end
@@ -47,12 +49,12 @@ class MassageSpasController < ApplicationController
     @massage_spa = MassageSpa.find_by(id: params[:id])
   
     if @massage_spa == current_user
-        #binding.pry
       @massage_spa.update(name: params[:name], email: params[:email], password: params[:password])
+      flash[:message] = "You have successffully edited your information."
 
       redirect "/massage_spas/#{@massage_spa.id}"
     else
-
+     
       redirect "/"
     end
   end

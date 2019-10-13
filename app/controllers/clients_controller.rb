@@ -16,7 +16,7 @@ class ClientsController < ApplicationController
 
       erb :"/clients/new.html"
     else
-
+      
       redirect '/'
     end
   end
@@ -25,10 +25,12 @@ class ClientsController < ApplicationController
     if logged_in?
       @client = Client.new(name: params[:name], address: params[:address], medical_history: params[:medical_history], massage_spa_id: current_user.id)
       if @client.save
+        flash[:message] = "You have successfully created a new client and saved to the data."
         
         redirect "/clients/#{@client.id}"
       else
-      
+        flash[:error] = "Client not created. Every category must be filled in."
+
         redirect '/clients/new'
       end
     else
@@ -63,11 +65,12 @@ class ClientsController < ApplicationController
     @client = Client.find_by(id: params[:id])
     if @client.massage_spa == current_user
         @client.update(name: params[:name], address: params[:address], medical_history: params[:medical_history])
-        
+        flash[:message] = "You have successfully edited your client."
+
         redirect "/clients/#{@client.id}"
       else
         
-      redirect '/'
+        redirect '/'
     end
   end
 
@@ -75,6 +78,7 @@ class ClientsController < ApplicationController
     @client = Client.find_by(id: params[:id])
     if @client.massage_spa == current_user
       @client.destroy
+      flash[:message] = "You have successfully deleted your client."
 
       redirect "/clients"
     else

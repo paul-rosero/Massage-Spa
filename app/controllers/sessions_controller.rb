@@ -14,9 +14,11 @@ class SessionsController < ApplicationController
     @massage_spa = MassageSpa.find_by(email: params[:email])
     if @massage_spa && @massage_spa.authenticate(params[:password])
       session[:massage_spa_id] = @massage_spa.id
+      flash[:message] = "You have successfully logged in."
     
       redirect "/massage_spas/#{@massage_spa.id}}"
     else
+      flash[:error] = "Login failed. Please sign in with the correct email and password."
 
       redirect '/login'
     end
@@ -25,7 +27,7 @@ class SessionsController < ApplicationController
   get "/logout" do
     session.clear
 
-    erb :"/sessions/logout.html"
+    erb :'/sessions/login.html'
   end  
 end
 
