@@ -17,7 +17,7 @@ class MassageSpasController < ApplicationController
 
       redirect "/massage_spas/#{@massage_spa.id}"
     else
-      flash[:error] = "Signup Failed. Please sign up with a name, valid email and password."
+      flash[:error] = "Signup Failed: #{@massage_spa.errors.full_messages.to_sentence}."
      
        redirect "/signup"
     end
