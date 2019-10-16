@@ -1,6 +1,6 @@
 class MassageSpa < ActiveRecord::Base
     has_secure_password
-    validates :name, :email, :password, presence: true
+    validates :name, :email, presence: true
     validates :email, uniqueness: true
 
     has_many :clients
