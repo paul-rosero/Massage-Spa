@@ -19,7 +19,7 @@ Specs:
         doesn't show the edit link or allows you to edit something you did not create, by using helper methods.
 - [x] Include user input validations
         cant create blank inputs for massage_spa or client. 
-- [ ] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
+- [x] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
 - [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
         have a readme.md
 
