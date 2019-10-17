@@ -49,7 +49,9 @@ class MassageSpasController < ApplicationController
         redirect "/massage_spas/#{@current_user.id}"
       end
     else
+      
       redirect '/'
+    end
   end
 
   patch "/massage_spas/:id" do
