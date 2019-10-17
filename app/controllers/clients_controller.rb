@@ -51,13 +51,17 @@ class ClientsController < ApplicationController
   end
 
   get "/clients/:id/edit" do
-    @client = Client.find_by(id: params[:id])
-    if @client.massage_spa == current_user 
+    if logged_in?
+      @client = Client.find_by(id: params[:id])
+      if @client.massage_spa == current_user 
         
-      erb :"/clients/edit.html"
-    else
+        erb :"/clients/edit.html"
+      else
 
-      redirect "/massage_spas/#{current_user.id}"
+        redirect "/massage_spas/#{current_user.id}"
+      end
+    else 
+      redirect '/'
     end
   end
   
@@ -70,7 +74,7 @@ class ClientsController < ApplicationController
         redirect "/clients/#{@client.id}"
       else
         
-        redirect '/'
+        redirect "/massage_spas/#{@current_user.id}"
     end
   end
 

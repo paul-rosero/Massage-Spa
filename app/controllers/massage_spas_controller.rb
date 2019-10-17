@@ -24,30 +24,36 @@ class MassageSpasController < ApplicationController
   end
 
   get "/massage_spas/:id" do
-    @massage_spa = MassageSpa.find_by(id: params[:id])
-    if @massage_spa == current_user 
+    if logged_in?
+      @massage_spa = MassageSpa.find_by(id: params[:id])
+      if @massage_spa == current_user 
       
-      erb :"/massage_spas/show.html"
+        erb :"/massage_spas/show.html"
+      else
+
+        redirect "/massage_spas/#{@current_user.id}"
+      end
     else
-
-      redirect '/signup'
-    end
-  end
-
-  get "/massage_spas/:id/edit" do
-    @massage_spa = MassageSpa.find_by(id: params[:id])
-    if @massage_spa == current_user 
-
-        erb :"/massage_spas/edit.html"
-    else
-
       redirect '/'
     end
   end
 
+  get "/massage_spas/:id/edit" do
+    if logged_in?
+      @massage_spa = MassageSpa.find_by(id: params[:id])
+      if @massage_spa == current_user 
+
+        erb :"/massage_spas/edit.html"
+      else
+
+        redirect "/massage_spas/#{@current_user.id}"
+      end
+    else
+      redirect '/'
+  end
+
   patch "/massage_spas/:id" do
     @massage_spa = MassageSpa.find_by(id: params[:id])
-  
     if @massage_spa == current_user
       @massage_spa.update(name: params[:name], email: params[:email], password: params[:password])
       flash[:message] = "You have successffully edited your information."
@@ -55,7 +61,7 @@ class MassageSpasController < ApplicationController
       redirect "/massage_spas/#{@massage_spa.id}"
     else
      
-      redirect "/"
+      redirect "/massage_spas/#{@current_user.id}"
     end
   end
 
